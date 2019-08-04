@@ -1,0 +1,14 @@
+<el-container>
+    <el-header>
+        <h1>Allo</h1>
+    </el-header>
+    <el-main>
+        <p>
+            The current date is <date :value="now"></date>
+        </p>
+
+        <p>
+            <qrcode :value="now.toString()"></qrcode>
+        </p>
+    </el-main>
+</el-container>
