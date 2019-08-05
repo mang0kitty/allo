@@ -1,14 +1,56 @@
 <el-container>
     <el-header>
-        <h1>Allo</h1>
+        <h1>Create your Allo card</h1>
     </el-header>
     <el-main>
-        <p>
-            The current date is <date :value="now"></date>
-        </p>
+        <el-row>
+            <el-col :span="15">
+                <el-form :model="user" class="form-content">
+                    <el-form-item>
+                        <el-input placeholder="Name" suffix-icon="el-icon-user" v-model="user.name">
+                        </el-input>
+                    </el-form-item>
+                    <el-form-item>
+                        <el-input placeholder="Company name" suffix-icon="el-icon-office-building" v-model="user.company">
+                        </el-input>
+                    </el-form-item>
 
-        <p>
-            <qrcode :value="now.toString()"></qrcode>
-        </p>
+                    <el-form-item>
+                        <el-input placeholder="Position" suffix-icon="el-icon-suitcase" v-model="user.position">
+                        </el-input>
+                    </el-form-item>
+
+                    <el-form-item v-for ="contact in user.contact">
+                        <el-input :placeholder="contact.type" v-model="contact.value" suffix-icon="el-icon-mobile-phone" class="input-with-select">
+                            <el-select v-model="contact.type" slot="prepend">
+                                <el-option v-for="(name,type) in contactTypes" :label="name" :value="type"></el-option>
+                            </el-select>
+                            <el-button @click="deleteContact(contact)" slot="append" icon="el-icon-minus"></el-button>
+                        </el-input>
+                    </el-form-item>
+                    <el-form-item> <el-button @click="addContact()"> +</el-button></el-form-item>
+                    <el-form-item v-for ="handle in user.handles">
+                        <el-input :placeholder="handle.type" v-model="handle.value" suffix-icon="el-icon-share" class="input-with-select">
+                            <el-select slot="prepend" v-model="handle.type">
+                                <el-option v-for="(name, type) in handleTypes" :label="name" :value="type"></el-option>
+                            </el-select>
+                            <el-button @click="deleteHandle(handle)" slot="append" icon="el-icon-minus"></el-button>
+                        </el-input>
+                    </el-form-item>
+
+                    <el-button @click="addHandle()"> +</el-button>
+                </el-form>
+            </el-col>
+            <el-col :span="6">
+                <div class="qrcode-content">
+                    <p>
+                        <qrcode :value="vCard"></qrcode>
+                    </p>
+                </div>
+            </el-col>
+        </el-row>
+
+
+
     </el-main>
 </el-container>

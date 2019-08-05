@@ -1,0 +1,25 @@
+<el-container>
+    <el-header>
+        <h1>Your Allo Card</h1></el-header> 
+    <el-main>
+            <el-col :span="8">
+                <el-card shadow="hover">
+                     <h4> <i class="el-icon-user-solid"></i> {{ user.name }}</h4>
+                     <p> <i class="el-icon-office-building"></i> {{ user.company }}</p>
+                     <p> <i class="el-icon-suitcase"></i> {{ user.position }}
+                     <p v-for="contact in user.contact">
+                        <octicon v-if="contact.type === 'email'" icon="mail"></octicon>
+                        <i class="el-icon-phone" v-if="contact.type === 'phone'"></i>
+                        <i class="el-icon-phone" v-if="contact.type === 'cell'" ></i>
+                        {{contact.value}}
+                     </p>
+                     <p v-for= "handle in user.handles">
+                        <img v-if="handle.type === 'instagram'" src="https://image.flaticon.com/icons/svg/1051/1051364.svg" width="15" height="20"style="vertical-align:middle"> 
+                        <img v-if="handle.type === 'linkedin'" src="https://image.flaticon.com/icons/svg/34/34405.svg" width="15" height="20" style="vertical-align: middle"> 
+                        <octicon v-if="handle.type === 'github'" icon="github"></octicon> 
+                        {{handle.value}}
+                     </p>
+                </el-card>
+            </el-col> 
+    </el-main>
+</el-container>

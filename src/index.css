@@ -119,3 +119,16 @@ a.el-button {
 .description {
     line-height: 1.4rem;
 }
+
+.el-select .el-input {
+    width: 110px;
+}
+
+.input-with-select .el-input-group__prepend {
+    background-color: #fff;
+}
+
+.octicon {
+    height: 1.2em;
+    vertical-align: middle;
+}

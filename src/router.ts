@@ -30,7 +30,8 @@ function asyncComponent(module: string) {
 
 const routes = [
     { name: 'home', path: "/", component: asyncComponent("views/home") },
-    { name: 'profile', path: "/profile", component: asyncComponent("views/home") }
+    { name: 'card', path: "/card", component: asyncComponent("views/card") },
+    { name: 'clock', path: "/clock", component: asyncComponent("views/clock") }
 ]
 
 export const router = new VueRouter({
