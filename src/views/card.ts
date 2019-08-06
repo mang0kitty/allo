@@ -14,7 +14,18 @@ import { UserProfile } from "../models/userprofile";
         octicon
     }
 })
-export default class ClockView extends Vue {
+export default class CardView extends Vue {
+
+    flipped: boolean = false;
+
+    toggleFlipped() {
+        this.flipped = !this.flipped;
+    }
+
+    get containerClasses(): string[] {
+        if (this.flipped) return ["flip-container", "flip"]
+        return ["flip-container"]
+    }
 
     user: UserProfile = {
         name: "Aideen Fay",
