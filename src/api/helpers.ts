@@ -36,7 +36,7 @@ export function apiHandleResponse<T>(res: Response, strict: true): Promise<T>
  * @param strict Whether an error should be thrown if the response is not a JSON object
  */
 export function apiHandleResponse<T>(res: Response, strict: boolean = false): Promise<T | { text: string }> {
-    if (res.status !== 200)
+    if (res.status >= 400)
         return res.json().then(data => {
             const err = new Error(data.message || "Failed to make a request to the API.")
             err["code"] = data.code || 500

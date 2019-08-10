@@ -5,18 +5,28 @@ import * as moment from "moment"
 
 import * as template from "text!./card.html"
 import { UserProfile } from "../models/userprofile";
+import { toVCard } from "../models/vcard";
+import { getCard } from "../api/card";
 
 
 @Component({
     template,
+    props: {
+        id: String
+    },
     components: {
         qrcode,
         octicon
     }
 })
 export default class CardView extends Vue {
-
+    id!: string;
+    user: UserProfile =null;
     flipped: boolean = false;
+
+    mounted() {
+        getCard(this.id).then(card =>this.user = card)
+    }
 
     toggleFlipped() {
         this.flipped = !this.flipped;
@@ -26,20 +36,8 @@ export default class CardView extends Vue {
         if (this.flipped) return ["flip-container", "flip"]
         return ["flip-container"]
     }
-
-    user: UserProfile = {
-        name: "Aideen Fay",
-        company: "Amazon",
-        position: "Software Developer (Intern)",
-        contact: [
-            {type: "email", value: "me@aideen.dev" },
-            {type: "cell", value: "+353 83 033 0012" }
-        ],
-        handles: [
-            { type: "github", value: "mangokittty" },
-            { type: "instagram", value: "aideenfay" },
-            { type: "linkedin", value: "aideenfay" }
-        ]
+    get vCard() {
+        return toVCard(this.user)
     }
   
 }

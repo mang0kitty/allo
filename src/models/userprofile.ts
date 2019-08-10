@@ -2,6 +2,7 @@ type HandleType = "github"|"linkedin"|"instagram";
 type ContactType = "email"|"phone"|"cell";
 
 export interface UserProfile {
+    id?: string;
     name: string;
     position?: string;
     company?: string;

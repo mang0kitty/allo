@@ -2,7 +2,7 @@
     <el-header>
         <h1>Your Allo Card</h1></el-header> 
     <el-main>
-            <el-col :span="8">
+        <el-col :span="8" v-if="user">
             <div :class="containerClasses" @touchstart="toggleFlipped()" @click="toggleFlipped()">
                 <div class = "flipper">
                     <div class = "front">
@@ -26,11 +26,11 @@
                     </div>
                     <div class="back">
                         <el-card class="back-content" shadow="hover">
-                            <p> Hi there</p>
+                            <qrcode :value="vCard"></qrcode>
                         </el-card>
                     </div>
                 </div>
             </div>
-            </el-col> 
+        </el-col> 
     </el-main>
 </el-container>

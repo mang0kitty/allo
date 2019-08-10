@@ -1,5 +1,5 @@
 import Vue from "vue";
-import VueRouter from "vue-router";
+import VueRouter, { RouteConfig } from "vue-router";
 import {Route} from "vue-router";
 import {store} from "./store";
 
@@ -28,9 +28,9 @@ function asyncComponent(module: string) {
     })
 }
 
-const routes = [
+const routes: RouteConfig[] = [
     { name: 'home', path: "/", component: asyncComponent("views/home") },
-    { name: 'card', path: "/card", component: asyncComponent("views/card") },
+    { name: 'card', path: "/c/:id", component: asyncComponent("views/card"), props: routeProps  },
     { name: 'clock', path: "/clock", component: asyncComponent("views/clock") }
 ]
 
